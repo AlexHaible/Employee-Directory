@@ -93,6 +93,7 @@
                         })
                         .then((response) => {
                             this.$emit("employeeAdded");
+                            this.clearForm();
                             console.log(response);
                         })
                         .catch((error) => {
@@ -124,6 +125,16 @@
                     .catch((error) => {
                         console.log(error);
                     });
+            },
+            clearForm() {
+                this.name = "";
+                this.email = "";
+                this.phone = "";
+                this.position = "";
+                this.error_name = "";
+                this.error_email = "";
+                this.error_phone = "";
+                this.error_position = "";
             },
         },
     };
