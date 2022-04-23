@@ -13,7 +13,7 @@
             };
         },
         mounted() {
-            console.log("Component mounted.");
+            console.log("Parent component mounted!");
             this.getData();
         },
         methods: {
@@ -21,7 +21,6 @@
                 axios
                     .get("/api/getEmployees")
                     .then((response) => {
-                        console.log(response.data);
                         this.employees = response.data;
                     })
                     .catch((error) => {

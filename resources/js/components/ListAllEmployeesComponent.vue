@@ -6,7 +6,7 @@
                     <div class="card-header">Liste over ansatte</div>
 
                     <div class="card-body">
-                        <table class="table" @employeeAdded="getData()">
+                        <table class="table">
                             <thead>
                                 <th scope="col">#</th>
                                 <th scope="col">Navn</th>
@@ -35,7 +35,7 @@
     export default {
         props: ["employees"],
         mounted() {
-            console.log("Component mounted.");
+            console.log("Employee list mounted!");
         },
     };
 </script>

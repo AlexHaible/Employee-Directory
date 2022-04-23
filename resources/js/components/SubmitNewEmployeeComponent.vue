@@ -13,6 +13,7 @@
                                 <div class="col">
                                     <label for="name" class="form-label">Navn</label>
                                     <input id="name" type="text" class="form-control" v-model="name" required>
+                                    <small >{{ error_name }} </small>
                                 </div>
                                 <div class="col">
                                     <label for="email" class="form-label">E-Mail Adresse</label>
@@ -33,6 +34,7 @@
                                         <option value="">Vælg venligst...</option>
                                         <option v-for="position in positions" :value="position.id">{{ position.type }}</option>
                                     </select>
+                                    <small >{{ error_position }} </small>
                                 </div>
                             </div>
 
@@ -68,7 +70,7 @@
             };
         },
         mounted() {
-            console.log("Component mounted.");
+            console.log("New employee form mounted!");
             this.getPositions();
         },
         methods: {
@@ -117,7 +119,6 @@
                 axios
                     .get("/api/getPositions")
                     .then((response) => {
-                        console.log(response.data);
                         this.positions = response.data;
                     })
                     .catch((error) => {
