@@ -12,29 +12,29 @@
                             <div class="row mb-3">
                                 <div class="col">
                                     <label for="name" class="form-label">Navn</label>
-                                    <input id="name" type="text" class="form-control" v-model="name" required>
-                                    <small >{{ error_name }} </small>
+                                    <input id="name" type="text" class="form-control" :class="{ 'is-invalid': error.name }" v-model="name" @input="delete error.name" minlength="1" maxlength="255" required>
+                                    <small >{{ error.name }} </small>
                                 </div>
                                 <div class="col">
                                     <label for="email" class="form-label">E-Mail Adresse</label>
-                                    <input id="email" type="email" class="form-control" v-model="email" required>
-                                    <small >{{ error_email }} </small>
+                                    <input id="email" type="email" class="form-control" :class="{ 'is-invalid': error.email }" v-model="email" @input="delete error.email" minlength="1" maxlength="255" required>
+                                    <small >{{ error.email }} </small>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col">
                                     <label for="phone" class="form-label">Telefon</label>
-                                    <input id="phone" type="tel" class="form-control" v-model="phone" required>
-                                    <small >{{ error_phone }} </small>
+                                    <input id="phone" type="tel" class="form-control" :class="{ 'is-invalid': error.phone }" v-model="phone" @input="delete error.phone" minlength="8" maxlength="8" required>
+                                    <small >{{ error.phone }} </small>
                                 </div>
                                 <div class="col">
                                     <label for="position" class="form-label">Stilling</label>
-                                    <select name="position" id="position" class="form-select" v-model="position" required>
-                                        <option value="">Vælg venligst...</option>
+                                    <select name="position" id="position" class="form-select" :class="{ 'is-invalid': error.position }" v-model="position" @select="delete error.position" required>
+                                        <option value="notChosen">Vælg venligst...</option>
                                         <option v-for="position in positions" :value="position.id">{{ position.type }}</option>
                                     </select>
-                                    <small >{{ error_position }} </small>
+                                    <small >{{ error.position }} </small>
                                 </div>
                             </div>
 
@@ -56,10 +56,12 @@
                 email: "",
                 phone: "",
                 position: "",
-                error_name: "",
-                error_email: "",
-                error_phone: "",
-                error_position: "",
+                error: {
+                    name: "",
+                    email: "",
+                    phone: "",
+                    position: "",
+                },
                 positions: [],
                 loading: false,
                 submit: {
@@ -98,10 +100,10 @@
                         })
                         .catch((error) => {
                             console.error(error);
-                            this.error_name = error.response.data.error.name;
-                            this.error_email = error.response.data.error.email;
-                            this.error_phone = error.response.data.error.phone;
-                            this.error_position =
+                            this.error.name = error.response.data.error.name;
+                            this.error.email = error.response.data.error.email;
+                            this.error.phone = error.response.data.error.phone;
+                            this.error.position =
                                 error.response.data.error.position;
                         })
                         .finally(() => {
