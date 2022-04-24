@@ -38,8 +38,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-25 fs-3" ref="submitBtn" @click="handleSubmit">Submit</button>
-                            <button class="btn btn-secondary w-25" ref="clearBtn" @click="clearForm">Ryd</button>
+                            <button type="submit" class="btn btn-primary w-25" ref="submitBtn" @click.prevent="handleSubmit">Submit</button>
+                            <button class="btn btn-secondary w-25" ref="clearBtn" @click.prevent="clearForm">Ryd</button>
                             </fieldset>
                         </form>
                     </div>
@@ -77,8 +77,7 @@
             this.getPositions();
         },
         methods: {
-            handleSubmit(e) {
-                e.preventDefault();
+            handleSubmit() {
                 this.loading = true;
                 this.$refs.submitBtn.innerHTML = this.submit.spinner;
                 if (
