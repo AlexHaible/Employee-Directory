@@ -12,7 +12,7 @@ class EmployeeFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->randomNumber(8, true),
-            'position' => $this->faker->numberBetween(1, 2),
+            'position_id' => $this->faker->numberBetween(1, 2),
         ];
     }
 }
