@@ -1,5 +1,13 @@
 ## Installation Instructions
 
-- Deploy like you would any other Laravel project.
-- Ensure you copy the .env.example to .env and edit the database settings to match your own setup.
-- Run the migrations afterwards.
+### Install packages
+- `composer install`
+- `npm install`
+
+### Initialize .env
+- `cp .env.example .env`
+- Remember to change database settings.
+
+### Generate key and seed database
+- `php artisan key:generate`
+- `php artisan migrate:fresh --seed`
